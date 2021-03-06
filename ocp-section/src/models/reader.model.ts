@@ -17,7 +17,16 @@ export class Reader {
         const path = `${this.directory}/${this.file}`;
         
         const file = new File();
-        const data = await file.readCsvFile(path);
+
+        let data;
+
+        if (path.endsWith('.txt')) {
+            data = await file.readTxtFile(path);
+        }
+
+        if (path.endsWith('.csv')) {
+            data = await file.readCsvFile(path);
+        }
 
         return data;      
     }

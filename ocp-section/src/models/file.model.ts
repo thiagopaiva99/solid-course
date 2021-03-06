@@ -1,5 +1,4 @@
-import { readFileSync, createReadStream } from "fs";
-import { parse } from '@fast-csv/parse';
+import { readFileSync } from "fs";
 import csvToJson from 'csvtojson';
 
 export class File {
@@ -18,6 +17,22 @@ export class File {
             this.data.push(item);
             return item;
         })    
+    }
+
+    public readTxtFile(path: string) {
+        const data = readFileSync(path, 'utf-8');
+        const rows = data.split('\n');
+        
+        return rows.map(row => {
+            const cpf = row.substring(0, 11);
+            const name = row.substring(11, row.indexOf('   '));
+            const email = row.substring(row.lastIndexOf('   ') + 3, row.length);
+            
+            const item = { name, cpf, email };
+            this.data.push(item);
+            return item;   
+        })
+        
     }
 
     public getData() {
