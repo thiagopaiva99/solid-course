@@ -1,5 +1,7 @@
 import { File } from "./file.model";
 
+import * as Extractors from '../extractors/index';
+
 export class Reader {
 
     private directory: string;
@@ -15,18 +17,13 @@ export class Reader {
 
     public async readFile() {
         const path = `${this.directory}/${this.file}`;
-        
-        const file = new File();
+        const [, extension] = path.split('.');
 
-        let data;
+        const extractorName = extension[0].toUpperCase() + extension.substr(1).toLowerCase()
 
-        if (path.endsWith('.txt')) {
-            data = await file.readTxtFile(path);
-        }
+        const extractorClass = new (Extractors)[`${extractorName}Extractor`](null);
 
-        if (path.endsWith('.csv')) {
-            data = await file.readCsvFile(path);
-        }
+        const data = await extractorClass.readFile(path);
 
         return data;      
     }
