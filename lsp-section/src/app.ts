@@ -1,16 +1,20 @@
-import { Rectangle } from "./models/rectangle.model";
-import { Square } from "./models/square.model";
+import { Polygon } from "./models/polygon.model";
+import { Rectangle } from "./models/polygons/rectangle.model";
+import { Square } from "./models/polygons/square.model";
 
-const rectangle = new Rectangle();
+const polygonRectangle = new Polygon();
 
-rectangle.set('width', 5);
-rectangle.set('height', 10);
+polygonRectangle.setShape(new Rectangle());
+polygonRectangle.getShape().set('width', 5)
+polygonRectangle.getShape().set('height', 10)
 
-console.log('rectangle area: ', rectangle.getArea());
+console.log(polygonRectangle);
+console.log('rectangle area: ', polygonRectangle.getShape().getArea());
 
-const square = new Square();
+const polygonSquare = new Polygon();
 
-square.set('width', 5);
-square.set('height', 10);
+polygonSquare.setShape(new Square());
+polygonSquare.getShape().set(5);
 
-console.log('square area: ', square.getArea());
+console.log(polygonSquare);
+console.log('square area: ', polygonSquare.getShape().getArea());
