@@ -1,0 +1,18 @@
+{
+  "name": "lsp-section",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec sucrase-node src/app.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^14.14.31",
+    "nodemon": "^2.0.7",
+    "sucrase": "^3.17.1",
+    "typescript": "^4.2.2"
+  }
+}
